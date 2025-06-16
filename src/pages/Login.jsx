@@ -11,6 +11,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await api.post("/login", { email, password });
+      console.log('hai yes')
+      console.log(res.data)
       localStorage.setItem("token", res.data.token);
       navigate("/home");
     } catch (err) {
