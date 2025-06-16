@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
+import './Login.css';
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -11,22 +12,33 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await api.post("/login", { username, password });
-      console.log('hai yes')
-      console.log(res.data)
       localStorage.setItem("token", res.data.token);
       navigate("/home");
     } catch (err) {
-        console.log(err);
-      alert("Login failed again");
+      alert("Login failed");
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login-now</h2>
-      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button type="submit">Login</button>
-    </form>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2>🔐 Login</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
