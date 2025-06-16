@@ -17,13 +17,13 @@ export default function Login() {
       navigate("/home");
     } catch (err) {
         console.log(err);
-      alert("Login failed");
+      alert("Login failed again");
     }
   };
 
   return (
     <form onSubmit={handleLogin}>
-      <h2>Login</h2>
+      <h2>Login-now</h2>
       <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
       <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
       <button type="submit">Login</button>
